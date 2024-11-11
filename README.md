@@ -34,7 +34,7 @@ Form Generator Application
 
 1. Клонируйте репозиторий:
 
-    git clone https://github.com/yourusername/form-generator.git
+    git clone https://github.com/OmniSnake/form-generator.git
 
 2.	Перейдите в директорию проекта:
    cd form-generator
