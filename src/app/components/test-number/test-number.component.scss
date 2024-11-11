@@ -1,0 +1,90 @@
+.test-number__form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.test-number__input-row {
+  display: flex;
+  align-items: center;
+}
+
+.test-number__label-container {
+  display: flex;
+  align-items: center;
+  min-width: 140px;
+  max-width: 140px;
+}
+
+.test-number__label-container label {
+  font-weight: normal;
+}
+
+.test-number__field-mark {
+  color: red;
+  margin-left: 5px;
+}
+
+.test-number__input-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.test-number__form-control {
+  width: 60px;
+  padding: 0 8px;
+  height: 32px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  box-sizing: border-box;
+  appearance: textfield;
+}
+
+.test-number__form-control::-webkit-outer-spin-button,
+.test-number__form-control::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.test-number__number-controls {
+  display: flex;
+  flex-direction: column;
+  height: 32px;
+  gap: 1px;
+}
+
+.test-number__control-button {
+  width: 20px;
+  height: 15px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.test-number__control-button:hover {
+  background-color: #d3d3d3;
+}
+
+.test-number__control-button:focus {
+  outline: none;
+}
+
+.test-number__description-text {
+  margin-left: 140px;
+  margin-top: 5px;
+  font-size: 12px;
+  color: #666;
+}
+
+.test-number__error-message {
+  color: red;
+  font-size: 12px;
+}

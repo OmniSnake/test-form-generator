@@ -1,13 +1,22 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { FormConfigService } from './services/form-config.service';
+import { FieldsConfig } from './models/fields-config';
+import { FormGeneratorComponent } from './components/form-generator/form-generator.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [
+    FormGeneratorComponent,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'form-generator';
+
+  public formConfig: FieldsConfig[];
+
+  constructor(private formConfigService: FormConfigService) {
+    this.formConfig = this.formConfigService.getFormConfig();
+  }
 }

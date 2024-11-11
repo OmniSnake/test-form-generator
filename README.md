@@ -1,27 +1,146 @@
-# FormGenerator
+Form Generator Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.1.
+Этот проект представляет собой приложение на Angular для динамической генерации форм на основе конфигурации. Приложение позволяет создавать формы с различными типами полей, включая текстовые поля, поля выбора, чекбоксы и числовые поля. Данные формы могут быть загружены из мок-данных и отправлены на сервер с помощью мок-сервисов.
 
-## Development server
+Содержание
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+	•	Особенности
+	•	Установка
+	•	Использование
+	•	Структура проекта
+	•	Компоненты
+	•	Сервисы
+	•	Моки
+	•	Интерсепторы
+	•	Шрифты
+	•	Лицензия
 
-## Code scaffolding
+Особенности
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+	•	Динамическая генерация форм на основе конфигурации.
+	•	Поддержка множественных типов полей: текстовые поля, числовые поля, выпадающие списки, чекбоксы.
+	•	Возможность добавления и удаления динамических полей.
+	•	Использование мок-данных для загрузки начальных данных формы.
+	•	Мок-сервисы для имитации взаимодействия с сервером.
+	•	Адаптивный дизайн с использованием пользовательских шрифтов.
+    •	Модификаторы в конфигурации позволяют изменять отображение компонентов test-select:
+		- exclude, для исключения элемента из списка вариантов;
+		- include, для включения эелемента в список вариантов;
+		- selected, для выбора элементя, по умолчанию;
+		*в первую очередь будут отображаться данные из mockFormData;
+	•	Для демонстрации функционала редактирования используется статическая модель testFormData.
 
-## Build
+# Установка через терминал bash 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Клонируйте репозиторий:
 
-## Running unit tests
+    git clone https://github.com/yourusername/form-generator.git
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2.	Перейдите в директорию проекта:
+   cd form-generator
 
-## Running end-to-end tests
+3.	Установите зависимости:
+    npm install
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+4.	Запустите приложение:
+    ng serve
 
-## Further help
+    Приложение будет доступно по адресу http://localhost:4200/
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+    Структура проекта
+
+	•	src/
+	•	app/
+	•	components/
+	•	form-generator.component.*
+	•	Главный компонент для генерации формы.
+	•	test-checkbox/
+	•	Компонент чекбокса.
+	•	test-input/
+	•	Компонент текстового ввода.
+	•	test-number/
+	•	Компонент числового ввода.
+	•	test-select/
+	•	Компонент выпадающего списка.
+	•	interceptors/
+	•	mock-http.interceptor.ts
+	•	Интерсептор для мокирования HTTP-запросов.
+	•	mocks/
+	•	mock-form-data.ts
+	•	Мок-данные для заполнения формы при загрузке.
+	•	models/
+	•	fields-config.ts
+	•	Интерфейс для конфигурации полей формы.
+	•	test-form.model.ts
+	•	Интерфейс для модели данных формы.
+	•	services/
+	•	api.service.ts
+	•	Сервис для обработки API-запросов.
+	•	form-config.service.ts
+	•	Сервис для предоставления конфигурации формы.
+	•	app.component.*
+	•	Корневой компонент приложения.
+	•	app.config.ts
+	•	Конфигурация приложения.
+	•	app.routes.ts
+	•	Маршруты приложения.
+	•	assets/fonts/PTSans/
+	•	Пользовательские шрифты, используемые в приложении.
+	•	index.html
+	•	Главный HTML-файл приложения.
+	•	main.ts
+	•	Точка входа в приложение.
+	•	styles.scss
+	•	Глобальные стили приложения.
+
+Компоненты
+
+    FormGeneratorComponent
+
+        Главный компонент, отвечающий за генерацию формы на основе конфигурации, предоставленной FormConfigService. Он обрабатывает построение формы, загрузку данных и отправку формы.
+
+    TestInputComponent
+
+        Переиспользуемый компонент текстового ввода с валидацией и отображением сообщений об ошибках.
+
+    TestNumberComponent
+
+        Переиспользуемый компонент числового ввода с валидацией и отображением сообщений об ошибках.
+
+    TestSelectComponent
+
+        Переиспользуемый компонент выпадающего списка.
+
+    estCheckboxComponent
+
+        Переиспользуемый компонент чекбокса, поддерживающий множественный выбор и функцию “Выбрать все”.
+
+Сервисы
+
+    ApiService
+
+        Обрабатывает API-запросы для загрузки и отправки данных формы.
+
+    FormConfigService
+
+        Предоставляет конфигурацию для генерации полей формы.
+
+Моки
+
+    MockFormData
+
+        Предоставляет мок-данные для заполнения формы при загрузке.
+
+Интерсепторы
+
+    MockHttpInterceptor
+
+        Перехватывает HTTP-запросы для мокирования ответов API в целях разработки.
+
+Шрифты
+
+    Пользовательские шрифты (PTSans) находятся в директории assets/fonts/PTSans и используются во всем приложении.
+
+Лицензия
+
+    Этот проект лицензирован в соответствии с условиями лицензии SIL Open Font License, Version 1.1 для включенных шрифтов.

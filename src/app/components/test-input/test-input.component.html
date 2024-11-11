@@ -1,0 +1,28 @@
+<div class="test-input__form-group">
+  <div class="test-input__input-row">
+    <ng-container *ngIf="label">
+      <div class="test-input__label-container">
+        <label>{{ label }}</label>
+        <span *ngIf="required" class="test-input__field-mark">*</span>
+      </div>
+    </ng-container>
+    <input 
+      type="text" 
+      [formControl]="control" 
+      [placeholder]="placeholder" 
+      class="test-input__form-control"
+      [ngStyle]="{'width': !addable ? '65%' : '', 'min-width': !addable ? '65%' : ''}"
+    /></div>
+  <small 
+    *ngIf="description && addable"
+    class="test-input__form-text"
+    [ngStyle]="{ 'margin-left': withButton ? '140px' : '0' }"
+    >{{ description }}</small>
+    <small 
+    *ngIf="description && !addable"
+    class="test-input__form-text"
+    >{{ description }}</small>
+  <div *ngIf="control.invalid && (control.dirty || control.touched)" class="test-input__error-message">
+    <span *ngIf="control.errors?.['required']">Это поле обязательно для заполнения.</span>
+  </div>
+</div>

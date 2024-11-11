@@ -1,0 +1,86 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <ng-container *ngFor="let field of formConfig">
+    <ng-container [ngSwitch]="field.type">
+
+      <ng-container *ngSwitchCase="'input'">
+        <ng-container *ngIf="field.addable; else singleInput">
+          <div [formArrayName]="field.fieldName" class="form-generator__container-input">
+            <div
+              *ngFor="let control of getFormArray(field.fieldName)?.controls; let i = index"
+              class="form-generator__input-group"
+              [ngStyle]="{ 'margin-left': (i > 0) ? '140px' : '0' }"
+            >
+              <app-test-input
+                [label]="i === 0 ? field.label : null"
+                [addable]="field.addable"
+                [withButton]="((getFormArray(field.fieldName)?.controls && (i + 1 === getFormArray(field.fieldName)?.controls?.length)) && i<1) ? true : false"
+                [required]="field.required ?? false"
+                [description]="(getFormArray(field.fieldName)?.controls && (i + 1 === getFormArray(field.fieldName)?.controls?.length)) ? field.description : undefined"
+                [control]="getFormControlFromArray(field.fieldName, i)!"
+                [placeholder]="field.placeholder ?? ''"
+              >
+              </app-test-input>
+              <button
+                *ngIf="i > 0"
+                (click)="removeField(field.fieldName, i)"
+                class="form-generator__delete-btn"
+                [ngStyle]="{ 'margin-bottom': (getFormArray(field.fieldName)?.controls && (i + 1 === getFormArray(field.fieldName)?.controls?.length)) ? '35px' : '15px' }"
+              ></button>
+              <div
+                *ngIf="getFormArray(field.fieldName)?.controls && (i + 1 === getFormArray(field.fieldName)?.controls?.length)"
+                class="form-generator__add-field-btn"
+                [ngStyle]="{ 'color': (field.maxLength && i + 1 < field.maxLength) ? 'black' : 'gray' }"
+                (click)="addField(field.fieldName, field.maxLength)"
+              >
+                <span class="form-generator__icon"></span>
+                <span class="form-generator__text">Добавить еще</span>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #singleInput>
+          <app-test-input
+            [label]="field.label"
+            [addable]="field.addable ?? false"
+            [required]="field.required ?? false"
+            [description]="field.description"
+            [control]="getFormControl(field.fieldName)!"
+            [placeholder]="field.placeholder ?? ''"
+          >
+          </app-test-input>
+        </ng-template>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'select'">
+        <ng-container *ngIf="applyModifiers(field) as modified">
+          <app-test-select
+            [label]="field.label"
+            [required]="field.required ?? false"
+            [choices]="modified.choices"
+            [selected]="modified.selected"
+            [control]="getFormControl(field.fieldName)!">
+          </app-test-select>
+        </ng-container>
+      </ng-container>
+
+      <app-test-number
+        *ngSwitchCase="'number'"
+        [label]="field.label"
+        [description]="field.description"
+        [required]="field.required ?? false"
+        [control]="getFormControl(field.fieldName)!">
+      </app-test-number>
+
+      <app-test-checkbox
+        *ngSwitchCase="'checkbox'"
+        [label]="field.label"
+        [required]="field.required ?? false"
+        [options]="field.options ?? []"
+        [control]="getFormArray(field.fieldName)!"
+        [selectAll]="field.selectAll ?? false">
+      </app-test-checkbox>
+
+    </ng-container>
+  </ng-container>
+  <button type="submit" [disabled]="form.invalid" class="form-generator__submit-btn">Отправить</button>
+</form>

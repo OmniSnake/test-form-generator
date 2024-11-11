@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'PTSans';
+    src: local("PTSans Regular"), local("PTSans-Regular"), url('/assets/fonts/PTSans/PTSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+@font-face {
+    font-family: 'PTSans';
+    src: local("PTSans Bold"), local("PTSans-Bold"), url('/assets/fonts/PTSans/PTSans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+body {
+    margin: 5% 20% 10% 20%;
+    font-family: 'PTSans', sans-serif;
+    font-weight: normal;
+  }
+  
+ h1 {
+    margin-bottom: 8%;
+    font-family: 'PTSans', sans-serif;
+    font-weight: 300;
+  }

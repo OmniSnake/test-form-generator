@@ -1,0 +1,35 @@
+<div class="test-select__form-group">
+  <div class="test-select__container">
+    <div class="test-select__label-container">
+      <label *ngIf="label">{{ label }}</label>
+      <span *ngIf="required" class="test-select__field-mark">*</span>
+    </div>
+    <div class="test-select__select" (click)="toggleDropdown()" [class.open]="isDropdownOpen">
+      <span>{{ selectedValue || 'Выберите значение' }}</span>
+      <svg
+        class="test-select__arrow"
+        [class.open]="isDropdownOpen"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M8 10L12 14L16 10" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+    <div class="test-select__dropdown" *ngIf="isDropdownOpen">
+      <div
+        *ngFor="let choice of choices"
+        class="test-select__dropdown-item"
+        [class.selected]="choice === selectedValue"
+        (click)="selectChoice(choice)"
+        (mouseover)="hoveredItem = choice"
+        [class.hovered]="hoveredItem === choice"
+      >
+        {{ choice }}
+      </div>
+    </div>
+  </div>
+  <small *ngIf="description" class="test-select__description-text">{{ description }}</small>
+</div>

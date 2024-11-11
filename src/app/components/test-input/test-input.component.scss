@@ -1,0 +1,48 @@
+.test-input__form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.test-input__input-row {
+  display: flex;
+  align-items: center;
+}
+
+.test-input__label-container {
+  display: flex;
+  align-items: center;
+  min-width: 140px;
+  max-width: 140px;
+}
+
+.test-input__label-container label {
+  font-weight: normal;
+}
+
+.test-input__field-mark {
+  color: red;
+  margin-left: 5px;
+}
+
+.test-input__form-control {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.test-input__form-control::placeholder {
+  color: #aaa;
+}
+
+.test-input__form-text {
+  margin-left: 140px;
+  margin-top: 5px;
+  font-size: 12px;
+  color: #666;
+}
+
+.test-input__error-message {
+  color: red;
+  font-size: 12px;
+}

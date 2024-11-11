@@ -1,0 +1,35 @@
+<div class="test-checkbox__form-group">
+  <div class="test-checkbox__input-row">
+    <div class="test-checkbox__label-container">
+      <label>{{ label }}</label>
+      <span *ngIf="required" class="test-checkbox__field-mark">*</span>
+    </div>
+    <div class="test-checkbox__checkbox-group">
+      <div class="test-checkbox__checkbox-item" *ngFor="let option of options; let i = index">
+        <input
+          type="checkbox"
+          [value]="option"
+          [checked]="isOptionSelected(option)"
+          (change)="onCheckboxChange(option, $event)"
+          id="checkbox-{{ label }}-{{ i }}"
+          class="test-checkbox__form-check-input"
+        />
+        <label for="checkbox-{{ label }}-{{ i }}" class="test-checkbox__form-check-label">{{ option }}</label>
+      </div>
+      <div
+        class="test-checkbox__checkbox-item test-checkbox__select-all"
+        *ngIf="selectAll"
+        [ngClass]="{'test-checkbox__end-of-first-column': isEven, 'test-checkbox__end-of-second-column': !isEven}"
+      >
+        <input
+          type="checkbox"
+          [checked]="isAllSelected()"
+          (change)="onCheckboxChange('selectAll', $event)"
+          id="checkbox-{{ label }}-selectAll"
+          class="test-checkbox__form-check-input"
+        />
+        <label for="checkbox-{{ label }}-selectAll" class="test-checkbox__form-check-label"><strong>Выделить все</strong></label>
+      </div>
+    </div>
+  </div>
+</div>

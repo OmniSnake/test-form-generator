@@ -1,0 +1,19 @@
+<div class="test-number__form-group">
+  <div class="test-number__input-row">
+    <div class="test-number__label-container">
+      <label *ngIf="label">{{ label }}</label>
+      <span *ngIf="required" class="test-number__field-mark">*</span>
+    </div>
+    <div class="test-number__input-container">
+      <input type="number" [formControl]="control" [placeholder]="placeholder" class="test-number__form-control" />
+      <div class="test-number__number-controls">
+        <button type="button" (click)="increment()" class="test-number__control-button">▲</button>
+        <button type="button" (click)="decrement()" class="test-number__control-button">▼</button>
+      </div>
+    </div>
+  </div>
+  <small *ngIf="description" class="test-number__description-text">{{ description }}</small>
+  <div *ngIf="control.invalid && (control.dirty || control.touched)" class="test-number__error-message">
+    <span *ngIf="control.errors?.['required']">Это поле обязательно для заполнения.</span>
+  </div>
+</div>
